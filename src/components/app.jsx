@@ -8,9 +8,21 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'view-cards'
+      view: 'view-cards',
+      cards: []
     }
     this.setView = this.setView.bind(this)
+    this.saveCards = this.saveCards.bind(this)
+  }
+
+  saveCards() {
+    const { cards } = this.state
+    const stringified = JSON.stringify(cards)
+    localStorage.setItem('flash-cards', stringified)
+  }
+
+  addCard(obj) {
+
   }
 
   setView(link) {
@@ -31,7 +43,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { view } = this.state
+    const { view, cards } = this.state
     return (
       <div>
         <Nav setView={this.setView} view={view} />
