@@ -31,9 +31,10 @@ class App extends React.Component {
   }
 
   render() {
+    const { view } = this.state
     return (
       <div>
-        <Nav setView={this.setView} />
+        <Nav setView={this.setView} view={view} />
         { this.getView() }
       </div>
     )
