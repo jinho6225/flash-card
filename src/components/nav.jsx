@@ -5,7 +5,7 @@ const Nav = (props) => {
   return (
       <ul className="nav nav-pills justify-content-end">
         <li className="nav-item">
-          <a className={`nav-link ${view === 'create-card' ? 'active' : ''} `} href="#" id="create-card" onClick={(e) => {
+          <a className={`nav-link ${view === 'view-cards' ? 'active' : ''} `} href="#" id="view-cards" onClick={(e) => {
             e.preventDefault()
             setView(e.target.id)
           }}>View Cards</a>
@@ -17,7 +17,7 @@ const Nav = (props) => {
           }}>Review</a>
         </li>
         <li className="nav-item">
-          <a className={`nav-link ${view === 'view-cards' ? 'active' : ''} `} href="#" id="view-cards" onClick={(e) => {
+          <a className={`nav-link ${view === 'create-card' ? 'active' : ''} `} href="#" id="create-card" onClick={(e) => {
             e.preventDefault()
             setView(e.target.id)
           }}>Create Card</a>
