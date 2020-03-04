@@ -21,6 +21,7 @@ module.exports = {
     ]
   },
   devServer: {
+    host: "0.0.0.0",
     contentBase: join(__dirname, 'dist'),
     port: 3000,
     stats: 'minimal'
