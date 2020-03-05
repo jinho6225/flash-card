@@ -3,7 +3,7 @@ import React from 'react'
 const Nav = (props) => {
   const { setView, view } = props
   return (
-      <ul className="nav nav-pills justify-content-end">
+      <ul className="nav nav-pills justify-content-end mb-3">
         <li className="nav-item">
           <a className={`nav-link ${view === 'view-cards' ? 'active' : ''} `} href="#" id="view-cards" onClick={(e) => {
             e.preventDefault()

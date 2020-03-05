@@ -8,12 +8,12 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'create-card',
-      cards: []
+      cards: [],
+      view: 'view-cards'
     }
-    this.setView = this.setView.bind(this)
-    this.saveCards = this.saveCards.bind(this)
-    this.addCard = this.addCard.bind(this)
+    this.setView = this.setView.bind(this);
+    this.saveCards = this.saveCards.bind(this);
+    this.addCard = this.addCard.bind(this);
   }
 
   saveCards() {
@@ -23,9 +23,13 @@ class App extends React.Component {
   }
 
   addCard(obj) {
-    const copiedArr = Array.from(this.state.cards)
-    copiedArr.push(obj)
-    this.saveCards()
+    const arr = Array.from(this.state.cards)
+    arr.push(obj)
+    this.setState((state) => {
+      return {cards: arr}
+    }, ()=> {
+      this.saveCards()
+    })
   }
 
   setView(link) {
@@ -35,7 +39,7 @@ class App extends React.Component {
   getView() {
     switch (this.state.view) {
       case 'create-card':
-    return <CreateCard addCard={this.addCard} />;
+    return <CreateCard addCard={this.addCard} setView={this.setView} />;
       case 'review-cards':
     return <ReviewCards />;
       case 'view-cards':
