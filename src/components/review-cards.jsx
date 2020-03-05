@@ -27,7 +27,7 @@ class ReviewCards extends React.Component {
         })
       } else {
         return ({
-          initial: (state.initial/(this.props.cards.length - 1)) - 1
+          initial: 0
         })
       }
     }, ()=> {
@@ -58,6 +58,8 @@ class ReviewCards extends React.Component {
 
   render() {
     const { activeCard, cards, setActiveCard } = this.props
+    console.log(this.state.initial)
+    console.log(cards.length)
     return (
       <>
         <h1 className="text-center mb-4">Review</h1>
