@@ -17,7 +17,7 @@ const ViewCards = (props) => {
         <div className="row row-cols-1 row-cols-md-3">
           {cards.map((card, i) => {
             return (
-                <div className="col" key={i}>
+                <div className="col mb-3" key={i}>
                   <div className="card" key={card.id}>
                     <div className="card-body bg-dark">
                       <h6 className="card-title text-secondary">Question</h6>
