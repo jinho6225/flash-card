@@ -1,0 +1,7 @@
+.carousel-item {
+  height: 35vh;
+}
+
+.review-card-title, .review-card, .review-card-body {
+  height: 100%;
+}
