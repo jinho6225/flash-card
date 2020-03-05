@@ -16,10 +16,29 @@ class App extends React.Component {
     this.addCard = this.addCard.bind(this);
   }
 
+  getCard() {
+    const FLASH_CARDS = 'flash-cards'
+    const { cards } = this.state;
+    if (localStorage.getItem(FLASH_CARDS) === null) {
+      let checking = confirm('Card Deck is empty now. Do you want to create new card?')
+      if (checking) {
+        this.setView('create-card')
+      }
+    } else {
+      const cardArr = JSON.parse(localStorage.getItem(FLASH_CARDS))
+      this.setState({ cards: cardArr })
+    }
+  }
+
+  componentDidMount() {
+    this.getCard()
+  }
+
   saveCards() {
+    const FLASH_CARDS = 'flash-cards'
     const { cards } = this.state
     const stringified = JSON.stringify(cards)
-    localStorage.setItem('flash-cards', stringified)
+    localStorage.setItem(FLASH_CARDS, stringified)
   }
 
   addCard(obj) {
@@ -43,7 +62,7 @@ class App extends React.Component {
       case 'review-cards':
     return <ReviewCards />;
       case 'view-cards':
-    return <ViewCards />;
+    return <ViewCards cards={this.state.cards} />;
       default:
     return null;
     }
