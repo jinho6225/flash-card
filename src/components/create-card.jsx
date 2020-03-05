@@ -38,13 +38,13 @@ class CreateCard extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Create New Card</h1>
+        <h1 className="text-center mb-3">Create New Card</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="">Question:</label>
             <textarea
               className="form-control"
-              rows="2"
+              rows="3"
               name="question"
               value={this.state.question}
               onChange={this.handleChange}
@@ -54,7 +54,7 @@ class CreateCard extends React.Component {
             <label htmlFor="">Answer:</label>
             <textarea
               className="form-control"
-              rows="2"
+              rows="3"
               name="answer"
               value={this.state.answer}
               onChange={this.handleChange}
