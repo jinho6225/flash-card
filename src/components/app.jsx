@@ -69,7 +69,7 @@ class App extends React.Component {
       case 'review-cards':
     return <ReviewCards cards={this.state.cards} activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} />;
       case 'view-cards':
-    return <ViewCards cards={this.state.cards} />;
+    return <ViewCards cards={this.state.cards} setView={this.setView}/>;
       default:
     return null;
     }

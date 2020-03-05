@@ -1,41 +1,76 @@
 import React from 'react'
 
-const ViewCards = (props) => {
-  const { cards } = props
-  if (cards.length === 0) {
-    return (
-      <div>
-        <h1 className="text-center">My Cards</h1>
-          <br></br>
-        <h4 className="text-center">Card deck is empty...</h4>
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        <h1 className="text-center mb-4">My Cards</h1>
-        <div className="row row-cols-1 row-cols-md-3">
-          {cards.map((card, i) => {
-            return (
-                <div className="col mb-3" key={i}>
-                  <div className="card" key={card.id}>
-                    <div className="card-body bg-dark">
-                      <h6 className="card-title text-secondary">Question</h6>
-                      <p className="card-text text-white">{card.question}</p>
-                    </div>
-                    <div className="card-body bg-secondary">
-                      <h6 className="card-title text-dark">Answer</h6>
-                      <p className="card-text text-white">{card.answer}</p>
-                    </div>
-                  </div>
-                </div>
-            )
-          })}
-        </div>
-      </div>
-    )
+class ViewCards extends React.Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        isOpen: false,
+    };
+    this.switchOpen = this.switchOpen.bind(this)
+
   }
 
+  switchOpen () {
+    this.setState({isOpen: !this.state.isOpen});
+  }
+
+  render() {
+    const { cards, setView } = this.props
+    if (cards.length === 0) {
+      return (
+        <div>
+          <h1 className="text-center">My Cards</h1>
+            <br></br>
+          <h4 className="text-center">Card deck is empty...</h4>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h1 className="text-center mb-4">My Cards</h1>
+
+            <div className={` ${this.state.isOpen ? '' : 'hidden'}`} onClick={this.switchOpen}>
+                <div onClick={e => e.stopPropagation()} className="basic-modal-content border border-dark p-5">
+                    <div onClick={this.switchOpen} className="basic-modal-close">
+                    <a href="#" className="badge badge-primary" onClick={this.switchOpen}>X</a></div>
+                    <h1>Really??????? </h1>
+                    <p>Do you really want to delete it?? please confirm!?</p>
+                    <div className="input-group mb-3">
+                      <button className="btn btn-danger mx-1">Delete</button>
+                      <button className="btn btn-outline-info mx-1" onClick={this.switchOpen}>Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+          <div className={`row row-cols-1 row-cols-md-3 ${this.state.isOpen ? 'hidden' : ''}`} >
+            {this.state.isOpen ? '' : cards.map((card, i) => {
+              return (
+                  <div className="col mb-3" key={i}>
+                    <div className="card" key={card.id}>
+                      <div className="card-body bg-dark">
+                        <h6 className="card-title text-secondary">Question</h6>
+                        <p className="card-text text-white">{card.question}</p>
+                      </div>
+                      <div className="card-body bg-secondary">
+                        <h6 className="card-title text-dark">Answer</h6>
+                        <p className="card-text text-white">{card.answer}</p>
+                        <div className="bg-secondary d-flex justify-content-center">
+                        <i className="far fa-trash-alt"
+                          onClick={this.switchOpen}>
+                        </i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              )
+            })
+
+            }
+          </div>
+        </div>
+      )
+    }
+  }
 }
 
 export default ViewCards;
