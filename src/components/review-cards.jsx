@@ -58,8 +58,6 @@ class ReviewCards extends React.Component {
 
   render() {
     const { activeCard, cards, setActiveCard } = this.props
-    console.log(this.state.initial)
-    console.log(cards.length)
     return (
       <>
         <h1 className="text-center mb-4">Review</h1>
