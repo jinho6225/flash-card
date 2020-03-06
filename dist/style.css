@@ -54,3 +54,6 @@
 .basic-modal-close:hover {
     background-color: #dedede;
 }
+.badge-primary {
+  cursor: pointer;
+}

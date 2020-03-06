@@ -20,20 +20,22 @@ class ViewCards extends React.Component {
   }
 
   render() {
-    const { cards, setView, deleteCard } = this.props
+    const { cards, setView, deleteCard, isEditing } = this.props
     if (cards.length === 0) {
       return (
         <div>
           <h1 className="text-center">My Cards</h1>
             <br></br>
           <h4 className="text-center">Card deck is empty...</h4>
+          <h4 className="text-center"><span className="badge badge-primary p-2" onClick={() => {
+            setView("create-card")
+            }}>Create Card</span></h4>
         </div>
       )
     } else {
       return (
         <div>
           <h1 className="text-center mb-4">My Cards</h1>
-
             <div className={`${this.state.isOpen ? 'basic-modal' : ''} ${this.state.isOpen ? '' : 'hidden'}`} onClick={this.switchOpen}>
                 <div onClick={e => e.stopPropagation()} className="basic-modal-content border border-dark p-4">
                     <div onClick={this.switchOpen} className="basic-modal-close">
@@ -63,6 +65,13 @@ class ViewCards extends React.Component {
                         <h6 className="card-title text-dark">Answer</h6>
                         <p className="card-text text-white">{card.answer}</p>
                         <div className="bg-secondary d-flex justify-content-center">
+                        <i className="far fa-edit"
+                          onClick={() => {
+                            setView("create-card")
+                            this.props.editing(i+1)
+                          }}>
+                        </i>
+                        <span>&#160;&#160;&#160;&#160;</span>
                         <i className="far fa-trash-alt"
                           onClick={() => {
                             this.checkActiveCard(i)
