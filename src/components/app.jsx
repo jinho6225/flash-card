@@ -1,6 +1,7 @@
 import React from 'react'
 import ViewCards from './view-cards.jsx'
 import CreateCard from './create-card.jsx'
+import UpdateCard from './update-card.jsx'
 import ReviewCards from './review-cards.jsx'
 import Nav from './nav.jsx'
 
@@ -10,13 +11,33 @@ class App extends React.Component {
     this.state = {
       cards: [],
       view: 'view-cards',
-      activeCard: null
+      activeCard: null,
+      isEditing: false
     }
     this.setView = this.setView.bind(this);
     this.saveCards = this.saveCards.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.updateCard = this.updateCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
+    this.editing = this.editing.bind(this)
+  }
+
+  updateCard(obj) {
+    const { isEditing } = this.state
+    const index = Number(isEditing) - 1
+    this.state.cards.splice(index, 1, obj)
+    this.setState((state) => {
+      return {cards: this.state.cards}
+    }, ()=> {
+      this.saveCards()
+    })
+  }
+
+  editing(idx) {
+    this.setState({
+      isEditing: idx
+    })
   }
 
   deleteCard(targetCard) {
@@ -76,21 +97,39 @@ class App extends React.Component {
   getView() {
     switch (this.state.view) {
       case 'create-card':
-    return <CreateCard addCard={this.addCard} setView={this.setView} />;
+    return <CreateCard
+        editing={this.editing}
+        isEditing={this.state.isEditing}
+        updateCard={this.updateCard}
+        addCard={this.addCard}
+        setView={this.setView}
+        setActiveCard={this.setActiveCard}
+        activeCard={this.state.activeCard}
+        cards={this.state.cards} />;
       case 'review-cards':
-    return <ReviewCards cards={this.state.cards} activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} />;
+    return <ReviewCards
+        cards={this.state.cards}
+        activeCard={this.state.activeCard}
+        setActiveCard={this.setActiveCard} />;
       case 'view-cards':
-    return <ViewCards cards={this.state.cards} setView={this.setView} activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} deleteCard={this.deleteCard}/>;
+    return <ViewCards
+        editing={this.editing}
+        isEditing={this.state.isEditing}
+        cards={this.state.cards}
+        setView={this.setView}
+        activeCard={this.state.activeCard}
+        setActiveCard={this.setActiveCard}
+        deleteCard={this.deleteCard} />;
       default:
     return null;
     }
   }
 
   render() {
-    const { view, activeCard } = this.state
+    const { view, activeCard, isEditing } = this.state
     return (
       <div className="container">
-        <Nav setView={this.setView} view={view} />
+        <Nav editing={this.editing} isEditing={isEditing} setView={this.setView} view={view} />
         { this.getView() }
       </div>
     )

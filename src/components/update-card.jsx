@@ -1,6 +1,6 @@
 import React from 'react'
 
-class CreateCard extends React.Component {
+class UpdateCard extends React.Component {
   constructor(props) {
     super(props)
     this.initialState = {
@@ -15,6 +15,7 @@ class CreateCard extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
+    const { activeCard } = this.props
     this.setState({
       [name]: value
     })
@@ -22,46 +23,24 @@ class CreateCard extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const { addCard, setView, isEditing, updateCard } = this.props
-    if (!isEditing) {
-      addCard(this.state)
-    }
-    if (isEditing > 0) {
-      updateCard(this.state)
-    }
+    const { addCard, setView } = this.props
+    addCard(this.state)
     this.setState(this.initialState)
-    this.props.editing(false)
     setView('view-cards')
   }
 
   reset() {
     const { setView } = this.props
     this.setState(this.initialState)
-    this.props.editing(false)
     setView('view-cards')
   }
 
-  componentDidMount() {
-    this.props.setActiveCard(this.props.isEditing - 1)
-  }
-
-  componentDidUpdate(prevProps) {
-    const { activeCard } = this.props;
-    if (activeCard) {
-      if (activeCard !== prevProps.activeCard) {
-        this.setState({
-          question: activeCard.question,
-          answer: activeCard.answer
-        });
-      }
-    }
-  }
 
   render() {
-    const { isEditing, activeCard } = this.props
+    console.log(this.props.activeCard)
     return (
       <div>
-        <h1 className="text-center mb-3">{isEditing ? 'Update Card' :'Create New Card'}</h1>
+        <h1 className="text-center mb-3">Update Card</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="">Question:</label>
@@ -95,4 +74,4 @@ class CreateCard extends React.Component {
   }
 }
 
-export default CreateCard;
+export default UpdateCard;
