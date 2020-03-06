@@ -16,6 +16,17 @@ class App extends React.Component {
     this.saveCards = this.saveCards.bind(this);
     this.addCard = this.addCard.bind(this);
     this.setActiveCard = this.setActiveCard.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
+  }
+
+  deleteCard(targetCard) {
+    const { cards } = this.state
+    var newCardArr = cards.filter((card, i) => {
+      return card.question !== targetCard.question
+    })
+    this.setState({ cards: newCardArr }, ()=> {
+      this.saveCards()
+    })
   }
 
   setActiveCard(index) {
@@ -69,7 +80,7 @@ class App extends React.Component {
       case 'review-cards':
     return <ReviewCards cards={this.state.cards} activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} />;
       case 'view-cards':
-    return <ViewCards cards={this.state.cards} setView={this.setView}/>;
+    return <ViewCards cards={this.state.cards} setView={this.setView} activeCard={this.state.activeCard} setActiveCard={this.setActiveCard} deleteCard={this.deleteCard}/>;
       default:
     return null;
     }

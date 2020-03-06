@@ -27,7 +27,7 @@ class ReviewCards extends React.Component {
         })
       } else {
         return ({
-          initial: (state.initial/(this.props.cards.length - 1)) - 1
+          initial: 0
         })
       }
     }, ()=> {
