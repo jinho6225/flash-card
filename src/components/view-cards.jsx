@@ -24,7 +24,7 @@ class ViewCards extends React.Component {
     if (cards.length === 0) {
       return (
         <div>
-          <h1 className="text-center">My Cards</h1>
+          <h1 className="text-center mb-3">My Cards</h1>
             <br></br>
           <h4 className="text-center">Card deck is empty...</h4>
           <h4 className="text-center"><span className="badge badge-primary p-2" onClick={() => {
