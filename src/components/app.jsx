@@ -59,10 +59,7 @@ class App extends React.Component {
     const FLASH_CARDS = 'flash-cards'
     const { cards } = this.state;
     if (localStorage.getItem(FLASH_CARDS) === null) {
-      let checking = confirm('Card Deck is empty now. Do you want to create new card?')
-      if (checking) {
-        this.setView('create-card')
-      }
+      this.setView('create-card')
     } else {
       const cardArr = JSON.parse(localStorage.getItem(FLASH_CARDS))
       this.setState({ cards: cardArr })
