@@ -4,7 +4,7 @@ import Nav from './nav.jsx';
 const Header = (props) => {
   const { editing, isEditing, setView, view } = props;
   return (
-    <div className="bgBlack text-white sticky-top py-3">
+    <div className="bgBlack text-white sticky-top py-5">
       <div className="container d-flex align-items-center justify-content-between">
         <h3 className="text-light m-0 title pointer">🚀 Flash Card</h3>
         <Nav
