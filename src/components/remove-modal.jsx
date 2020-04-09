@@ -14,7 +14,7 @@ function RemoveModal(props) {
             showModal.show ? 'slide-in' : 'slide-out'
           }`}
         >
-          <h5 className="text-center">Do you want to remove item?</h5>
+          <h5 className="text-center">Do you want to remove card?</h5>
           <div className="btn-group w-100">
             <button
               className="btn btn-secondary text-white w-50"
@@ -29,7 +29,7 @@ function RemoveModal(props) {
                 toggleModal();
               }}
             >
-              Remove Item
+              Remove Card
             </button>
           </div>
         </div>
