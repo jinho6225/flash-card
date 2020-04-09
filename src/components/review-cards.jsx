@@ -85,7 +85,7 @@ class ReviewCards extends React.Component {
     } else {
       return (
         <>
-          <h2 className="text-center mb-4">Review</h2>
+          <h2 className="text-center mb-4">Review (flip the card) </h2>
           <div className="row ">
             <div className="carousel-inner">
               <div className="carousel-item active">
@@ -96,7 +96,7 @@ class ReviewCards extends React.Component {
                     }`}
                   >
                     <div
-                      className=""
+                      className="title"
                       onClick={() => {
                         this.previouseCard();
                       }}
@@ -107,7 +107,7 @@ class ReviewCards extends React.Component {
                     </div>
                   </div>
                   <div
-                    className={`review-card-body col-8 d-flex align-items-center justify-content-center ${
+                    className={`review-card-body col-8 d-flex align-items-center justify-content-center title ${
                       this.state.front ? 'bg-dark' : 'bg-secondary'
                     }`}
                     onClick={() => {
@@ -129,8 +129,8 @@ class ReviewCards extends React.Component {
                       this.state.front ? 'bg-dark' : 'bg-secondary'
                     }`}
                   >
-                    <a
-                      className=""
+                    <div
+                      className="title"
                       onClick={() => {
                         this.nextCard();
                       }}
@@ -138,7 +138,7 @@ class ReviewCards extends React.Component {
                       data-slide="next"
                     >
                       <span className="carousel-control-next-icon"></span>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
