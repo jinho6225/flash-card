@@ -1,22 +1,20 @@
 import React from 'react';
 
 function RemoveModal(props) {
-  const { card, showModal, toggleModal, deleteCard } = props;
+  const { activeCard, showModal, toggleModal, deleteCard } = props;
   return (
     <div
-      className={`${showModal.displayNone ? 'd-none' : 'd-flex'} overlay ${
-        showModal.show ? 'fade-in' : 'fade-out'
-      }`}
+      className={`removeModal ${
+        showModal.displayNone ? 'd-none' : 'd-flex'
+      } overlay ${showModal.show ? 'fade-in' : 'fade-out'}`}
     >
       <div className="m-auto p-3">
         <div
-          className={`bg-dark p-3 rounded modal-message ${
+          className={`bg-light p-3 rounded modal-message ${
             showModal.show ? 'slide-in' : 'slide-out'
           }`}
         >
-          <h5 className="text-center text-white">
-            Do you want to remove item?
-          </h5>
+          <h5 className="text-center">Do you want to remove item?</h5>
           <div className="btn-group w-100">
             <button
               className="btn btn-secondary text-white w-50"
@@ -27,7 +25,7 @@ function RemoveModal(props) {
             <button
               className="btn btn-danger text-white w-50"
               onClick={() => {
-                deleteCard(card);
+                deleteCard(activeCard);
                 toggleModal();
               }}
             >

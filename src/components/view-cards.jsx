@@ -11,7 +11,6 @@ class ViewCards extends React.Component {
       },
     };
     this.toggleModal = this.toggleModal.bind(this);
-    this.checkActiveCard = this.checkActiveCard.bind(this);
     this.timeId = null;
   }
 
@@ -45,12 +44,15 @@ class ViewCards extends React.Component {
     }
   }
 
-  checkActiveCard(idx) {
-    this.props.setActiveCard(idx);
-  }
-
   render() {
-    const { cards, setView, deleteCard, isEditing } = this.props;
+    const {
+      cards,
+      setView,
+      deleteCard,
+      isEditing,
+      setActiveCard,
+      activeCard,
+    } = this.props;
     if (cards.length === 0) {
       return (
         <div>
@@ -72,9 +74,9 @@ class ViewCards extends React.Component {
       return (
         <div>
           <h1 className="text-center mb-4">My Cards</h1>
-          {cards.map((card, i) => {
-            return (
-              <div className="row row-cols-1 row-cols-md-3">
+          <div className="row row-cols-1 row-cols-md-3">
+            {cards.map((card, i) => {
+              return (
                 <div className="col mb-3" key={i}>
                   <div className="card">
                     <div className="card-body bg-dark">
@@ -89,6 +91,7 @@ class ViewCards extends React.Component {
                           className="far fa-edit"
                           onClick={() => {
                             setView('create-card');
+                            console.log(i);
                             this.props.editing(i + 1);
                           }}
                         ></i>
@@ -96,7 +99,7 @@ class ViewCards extends React.Component {
                         <i
                           className="far fa-trash-alt"
                           onClick={() => {
-                            this.checkActiveCard(i);
+                            setActiveCard(i);
                             this.toggleModal();
                           }}
                         ></i>
@@ -104,15 +107,15 @@ class ViewCards extends React.Component {
                     </div>
                   </div>
                 </div>
-                <RemoveModal
-                  card={card}
-                  deleteCard={this.props.deleteCard}
-                  showModal={this.state.showModal}
-                  toggleModal={this.toggleModal}
-                />
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <RemoveModal
+            activeCard={activeCard}
+            deleteCard={deleteCard}
+            showModal={this.state.showModal}
+            toggleModal={this.toggleModal}
+          />
         </div>
       );
     }
