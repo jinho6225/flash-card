@@ -1,48 +1,48 @@
-import React from 'react'
+import React from 'react';
 
 class CreateCard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.initialState = {
       question: '',
-      answer: ''
-    }
-    this.state = this.initialState
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.reset = this.reset.bind(this)
+      answer: '',
+    };
+    this.state = this.initialState;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
-    })
+      [name]: value,
+    });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    const { addCard, setView, isEditing, updateCard } = this.props
+    e.preventDefault();
+    const { addCard, setView, isEditing, updateCard } = this.props;
     if (!isEditing) {
-      addCard(this.state)
+      addCard(this.state);
     }
     if (isEditing > 0) {
-      updateCard(this.state)
+      updateCard(this.state);
     }
-    this.setState(this.initialState)
-    this.props.editing(false)
-    setView('view-cards')
+    this.setState(this.initialState);
+    this.props.editing(false);
+    setView('view-cards');
   }
 
   reset() {
-    const { setView } = this.props
-    this.setState(this.initialState)
-    this.props.editing(false)
-    setView('view-cards')
+    const { setView } = this.props;
+    this.setState(this.initialState);
+    this.props.editing(false);
+    setView('view-cards');
   }
 
   componentDidMount() {
-    this.props.setActiveCard(this.props.isEditing - 1)
+    this.props.setActiveCard(this.props.isEditing - 1);
   }
 
   componentDidUpdate(prevProps) {
@@ -51,17 +51,19 @@ class CreateCard extends React.Component {
       if (activeCard !== prevProps.activeCard) {
         this.setState({
           question: activeCard.question,
-          answer: activeCard.answer
+          answer: activeCard.answer,
         });
       }
     }
   }
 
   render() {
-    const { isEditing, activeCard } = this.props
+    const { isEditing, activeCard } = this.props;
     return (
       <div>
-        <h1 className="text-center mb-3">{isEditing ? 'Update Card' :'Create New Card'}</h1>
+        <h2 className="text-center mb-3">
+          {isEditing ? 'Update Card' : 'Create New Card'}
+        </h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="">Question:</label>
@@ -84,14 +86,22 @@ class CreateCard extends React.Component {
             ></textarea>
           </div>
           <div className="d-flex justify-content-end">
-              <button className="btn btn-outline-danger mx-1" type="submit" onClick={() => {
-                this.reset()
-              }}>Cancel</button>
-              <button className="btn btn-outline-primary mx-1" type="submit">Save Card</button>
+            <button
+              className="btn btn-outline-danger mx-1"
+              type="submit"
+              onClick={() => {
+                this.reset();
+              }}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-outline-primary mx-1" type="submit">
+              Save Card
+            </button>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 

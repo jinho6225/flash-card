@@ -73,7 +73,7 @@ class ViewCards extends React.Component {
     } else {
       return (
         <div>
-          <h1 className="text-center mb-4">My Cards</h1>
+          <h2 className="text-center mb-4">My Cards</h2>
           <div className="row row-cols-1 row-cols-md-3">
             {cards.map((card, i) => {
               return (

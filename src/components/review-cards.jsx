@@ -85,7 +85,7 @@ class ReviewCards extends React.Component {
     } else {
       return (
         <>
-          <h1 className="text-center mb-4">Review</h1>
+          <h2 className="text-center mb-4">Review</h2>
           <div className="row ">
             <div className="carousel-inner">
               <div className="carousel-item active">

@@ -1,3 +1,6 @@
+.title {
+  cursor: pointer; }
+
 .removeModal {
   position: fixed;
   top: 0;
@@ -17,7 +20,7 @@
   min-height: 65vh; }
 
 .carousel-item {
-  height: 35vh; }
+  height: 40vh; }
 
 .review-card-title,
 .review-card,
