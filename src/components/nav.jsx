@@ -3,7 +3,7 @@ import React from 'react';
 const Nav = (props) => {
   const { setView, view, isEditing, editing } = props;
   return (
-    <ul className="nav nav-pills justify-content-end mb-3">
+    <ul className="nav nav-pills justify-content-end">
       <li className="nav-item">
         <a
           className={`nav-link ${view === 'view-cards' ? 'active' : ''} `}

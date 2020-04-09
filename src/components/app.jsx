@@ -122,6 +122,7 @@ class App extends React.Component {
         return (
           <ReviewCards
             cards={this.state.cards}
+            setView={this.setView}
             activeCard={this.state.activeCard}
             setActiveCard={this.setActiveCard}
           />
@@ -153,7 +154,7 @@ class App extends React.Component {
           setView={this.setView}
           view={view}
         />
-        <div className="container">{this.getView()}</div>;
+        <div className="container mainbody">{this.getView()}</div>;
         <Footer />
       </>
     );
