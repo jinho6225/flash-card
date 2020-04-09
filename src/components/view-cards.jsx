@@ -1,22 +1,52 @@
 import React from 'react';
+import RemoveModal from './remove-modal';
 
 class ViewCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
+      showModal: {
+        show: false,
+        displayNone: true,
+      },
     };
-    this.switchOpen = this.switchOpen.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.checkActiveCard = this.checkActiveCard.bind(this);
+    this.timeId = null;
   }
 
-  switchOpen() {
-    this.setState({ isOpen: !this.state.isOpen });
+  toggleModal() {
+    const {
+      showModal: { show },
+    } = this.state;
+    if (show) {
+      this.setState({
+        showModal: {
+          show: false,
+          displayNone: false,
+        },
+      });
+      this.timeId = setTimeout(() => {
+        this.setState({
+          showModal: {
+            show: false,
+            displayNone: true,
+          },
+        });
+      }, 750);
+    } else {
+      this.setState({
+        showModal: {
+          show: true,
+          displayNone: false,
+        },
+      });
+      clearTimeout(this.timeId);
+    }
   }
 
   checkActiveCard(idx) {
     this.props.setActiveCard(idx);
-    this.switchOpen();
   }
 
   render() {
@@ -25,7 +55,6 @@ class ViewCards extends React.Component {
       return (
         <div>
           <h1 className="text-center mb-3">My Cards</h1>
-          <br></br>
           <h4 className="text-center">Card deck is empty...</h4>
           <h4 className="text-center">
             <span
@@ -43,54 +72,9 @@ class ViewCards extends React.Component {
       return (
         <div>
           <h1 className="text-center mb-4">My Cards</h1>
-          <div
-            className={`${this.state.isOpen ? 'basic-modal' : ''} ${
-              this.state.isOpen ? '' : 'hidden'
-            }`}
-            onClick={this.switchOpen}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="basic-modal-content border border-dark p-4"
-            >
-              <div onClick={this.switchOpen} className="basic-modal-close">
-                <a
-                  href="#"
-                  className="badge badge-primary"
-                  onClick={this.switchOpen}
-                >
-                  X
-                </a>
-              </div>
-              <h1>Really???</h1>
-              <p>Do you really want to delete it?? please confirm!?</p>
-              <div className="input-group mb-3">
-                <button
-                  className="btn btn-danger mx-1"
-                  onClick={() => {
-                    deleteCard(this.props.activeCard);
-                    this.switchOpen();
-                  }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="btn btn-outline-info mx-1"
-                  onClick={this.switchOpen}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={`row row-cols-1 row-cols-md-3 ${
-              this.state.isOpen ? 'hidden' : ''
-            }`}
-          >
-            {cards.map((card, i) => {
-              return (
+          {cards.map((card, i) => {
+            return (
+              <div className="row row-cols-1 row-cols-md-3">
                 <div className="col mb-3" key={i}>
                   <div className="card">
                     <div className="card-body bg-dark">
@@ -113,15 +97,22 @@ class ViewCards extends React.Component {
                           className="far fa-trash-alt"
                           onClick={() => {
                             this.checkActiveCard(i);
+                            this.toggleModal();
                           }}
                         ></i>
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+                <RemoveModal
+                  card={card}
+                  deleteCard={this.props.deleteCard}
+                  showModal={this.state.showModal}
+                  toggleModal={this.toggleModal}
+                />
+              </div>
+            );
+          })}
         </div>
       );
     }

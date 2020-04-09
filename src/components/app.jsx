@@ -62,14 +62,7 @@ class App extends React.Component {
   getCard() {
     const FLASH_CARDS = 'flash-cards';
     const { cards } = this.state;
-    if (localStorage.getItem(FLASH_CARDS) === null) {
-      let checking = confirm(
-        'Card Deck is empty now. Do you want to create new card?'
-      );
-      if (checking) {
-        this.setView('create-card');
-      }
-    } else {
+    if (localStorage.getItem(FLASH_CARDS) !== null) {
       const cardArr = JSON.parse(localStorage.getItem(FLASH_CARDS));
       this.setState({ cards: cardArr });
     }
@@ -154,7 +147,7 @@ class App extends React.Component {
           setView={this.setView}
           view={view}
         />
-        <div className="container mainbody">{this.getView()}</div>;
+        <div className="container mainbody py-3">{this.getView()}</div>
         <Footer />
       </>
     );
