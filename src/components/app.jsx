@@ -147,7 +147,7 @@ class App extends React.Component {
           setView={this.setView}
           view={view}
         />
-        <div className="container bg-light mainbody py-3">{this.getView()}</div>
+        <div className="container mainbody py-3">{this.getView()}</div>
         <Footer />
       </>
     );
