@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <div className="bgBlack py-5">
+    <div className="bgBlack py-5 my-3">
       <div className="container">
         <h3 className="text-center text-white">💡 Flash Card</h3>
         <h6 className="text-center text-white">
