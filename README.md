@@ -23,7 +23,7 @@ Try the application live at [https://flash-card.jinho6225.com/](https://flash-ca
 - User can store their flash cards on the browser's local storage
 
 ## Preview
-[React Flash Cards Mobile](dist/img/flash-card-mobile.gif)
+![React Flash Cards Mobile](dist/img/flash-card-mobile.gif)
 ![React Flash Cards](dist/img/flash-card.gif)
 
 
