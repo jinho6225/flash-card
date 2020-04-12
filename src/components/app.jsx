@@ -16,8 +16,8 @@ class App extends React.Component {
       activeCard: null,
       isEditing: false,
       showModal: {
-        show: false,
-        displayNone: true,
+        show: true,
+        displayNone: false,
       },
     };
     this.setView = this.setView.bind(this);
@@ -30,15 +30,30 @@ class App extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { cards, showModal } = this.state;
+    if (prevState.cards !== cards) {
+      if (!showModal.show) {
+        this.setState({
+          showModal: {
+            show: true,
+            displayNone: false,
+          },
+        });
+      }
+    }
+  }
+
   toggleModal() {
     const {
       showModal: { show },
+      cards,
     } = this.state;
-    if (!show) {
+    if (show) {
       this.setState({
         showModal: {
-          show: true,
-          displayNone: false,
+          show: false,
+          displayNone: true,
         },
       });
     }

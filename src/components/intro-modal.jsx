@@ -5,16 +5,16 @@ function IntroModal(props) {
   return (
     <div
       className={`introModal ${
-        showModal.displayNone ? 'd-flex' : 'd-none'
-      } overlay ${showModal.show ? 'fade-out' : 'fade-in'}`}
+        showModal.displayNone ? 'd-none' : 'd-flex'
+      } overlay ${showModal.show ? 'fade-in' : 'fade-out'}`}
     >
       <div className="m-auto p-3">
         <div
-          className={`bg-dark p-3 rounded modal-message ${
-            showModal.show ? 'slide-out' : 'slide-in'
+          className={`bg-dark p-3 py-4 rounded modal-message ${
+            showModal.show ? 'slide-in' : 'slide-out'
           }`}
         >
-          <h4 className="text-center text-white p-2">Card deck is empty...</h4>
+          <h4 className="text-center text-white">Card deck is empty...</h4>
           <h5 className="text-center text-white">
             Do you want to create card??
           </h5>
