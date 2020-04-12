@@ -5,6 +5,7 @@ import UpdateCard from './update-card.jsx';
 import ReviewCards from './review-cards.jsx';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
+import IntroModal from './intro-modal.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class App extends React.Component {
       view: 'view-cards',
       activeCard: null,
       isEditing: false,
+      showModal: {
+        show: false,
+        displayNone: true,
+      },
     };
     this.setView = this.setView.bind(this);
     this.saveCards = this.saveCards.bind(this);
@@ -22,6 +27,21 @@ class App extends React.Component {
     this.setActiveCard = this.setActiveCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.editing = this.editing.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    const {
+      showModal: { show },
+    } = this.state;
+    if (!show) {
+      this.setState({
+        showModal: {
+          show: true,
+          displayNone: false,
+        },
+      });
+    }
   }
 
   updateCard(obj) {
@@ -138,7 +158,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { view, activeCard, isEditing } = this.state;
+    const { view, activeCard, isEditing, cards, showModal } = this.state;
     return (
       <>
         <Header
@@ -147,6 +167,15 @@ class App extends React.Component {
           setView={this.setView}
           view={view}
         />
+        {cards.length === 0 ? (
+          <IntroModal
+            showModal={showModal}
+            toggleModal={this.toggleModal}
+            setView={this.setView}
+          />
+        ) : (
+          ''
+        )}
         <div className="container mainbody py-3">{this.getView()}</div>
         <Footer />
       </>

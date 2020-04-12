@@ -4,7 +4,7 @@ import Nav from './nav.jsx';
 const Header = (props) => {
   const { editing, isEditing, setView, view } = props;
   return (
-    <div className="bgBlack sticky-top py-5">
+    <div className="bgBlack sticky-top py-4">
       <div className="container d-flex flex-wrap align-items-center justify-content-between px-4">
         <div className="m-2">
           <h2
