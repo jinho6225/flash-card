@@ -26,6 +26,16 @@
 .carousel-item {
   height: 40vh; }
 
+.icon {
+  transition: transform 0.5s; }
+
+.icon:hover {
+  color: white;
+  cursor: pointer;
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); }
+
 .review-card-title,
 .review-card,
 .review-card-body {

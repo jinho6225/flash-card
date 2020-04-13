@@ -88,7 +88,7 @@ class ViewCards extends React.Component {
                       <p className="card-text text-white">{card.answer}</p>
                       <div className="bg-secondary d-flex justify-content-center">
                         <i
-                          className="far fa-edit"
+                          className="far fa-edit icon"
                           onClick={() => {
                             setView('create-card');
                             console.log(i);
@@ -97,7 +97,7 @@ class ViewCards extends React.Component {
                         ></i>
                         <span>&#160;&#160;&#160;&#160;</span>
                         <i
-                          className="far fa-trash-alt"
+                          className="far fa-trash-alt icon"
                           onClick={() => {
                             setActiveCard(i);
                             this.toggleModal();
