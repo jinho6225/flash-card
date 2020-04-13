@@ -20,6 +20,9 @@
 .mainbody {
   min-height: 65vh; }
 
+.footer {
+  min-height: 25vh; }
+
 .carousel-item {
   height: 40vh; }
 
