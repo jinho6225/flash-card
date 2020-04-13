@@ -73,6 +73,7 @@ class CreateCard extends React.Component {
               name="question"
               value={this.state.question}
               onChange={this.handleChange}
+              required
             ></textarea>
           </div>
           <div className="form-group">
@@ -83,6 +84,7 @@ class CreateCard extends React.Component {
               name="answer"
               value={this.state.answer}
               onChange={this.handleChange}
+              required
             ></textarea>
           </div>
           <div className="d-flex justify-content-end">
