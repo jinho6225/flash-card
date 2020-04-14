@@ -91,7 +91,6 @@ class ViewCards extends React.Component {
                           className="far fa-edit icon"
                           onClick={() => {
                             setView('create-card');
-                            console.log(i);
                             this.props.editing(i + 1);
                           }}
                         ></i>

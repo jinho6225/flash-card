@@ -19,6 +19,7 @@ class App extends React.Component {
         show: true,
         displayNone: false,
       },
+      duplicatedQS: false,
     };
     this.setView = this.setView.bind(this);
     this.saveCards = this.saveCards.bind(this);
@@ -28,6 +29,7 @@ class App extends React.Component {
     this.deleteCard = this.deleteCard.bind(this);
     this.editing = this.editing.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.duplicationModal = this.duplicationModal.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -59,6 +61,13 @@ class App extends React.Component {
     }
   }
 
+  duplicationModal() {
+    const { duplicatedQS } = this.state;
+    this.setState({
+      duplicatedQS: !duplicatedQS,
+    });
+  }
+
   updateCard(obj) {
     const { isEditing } = this.state;
     const index = Number(isEditing) - 1;
@@ -69,6 +78,7 @@ class App extends React.Component {
       },
       () => {
         this.saveCards();
+        this.setView('view-cards');
       }
     );
   }
@@ -116,15 +126,23 @@ class App extends React.Component {
 
   addCard(obj) {
     const arr = Array.from(this.state.cards);
-    arr.push(obj);
-    this.setState(
-      (state) => {
-        return { cards: arr };
-      },
-      () => {
-        this.saveCards();
-      }
-    );
+    const duplication = arr.filter((qs) => {
+      return qs.question === obj.question;
+    });
+    if (duplication.length === 0) {
+      arr.push(obj);
+      this.setState(
+        (state) => {
+          return { cards: arr };
+        },
+        () => {
+          this.saveCards();
+          this.setView('view-cards');
+        }
+      );
+    } else {
+      this.duplicationModal();
+    }
   }
 
   setView(link) {
@@ -144,6 +162,8 @@ class App extends React.Component {
             setActiveCard={this.setActiveCard}
             activeCard={this.state.activeCard}
             cards={this.state.cards}
+            duplicatedQS={this.state.duplicatedQS}
+            duplicationModal={this.duplicationModal}
           />
         );
       case 'review-cards':
@@ -173,7 +193,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { view, activeCard, isEditing, cards, showModal } = this.state;
+    const {
+      view,
+      activeCard,
+      isEditing,
+      cards,
+      showModal,
+      duplicatedQS,
+    } = this.state;
     return (
       <>
         <Header

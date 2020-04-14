@@ -1,4 +1,5 @@
 import React from 'react';
+import DuplicationModal from './duplication-modal.jsx';
 
 class CreateCard extends React.Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class CreateCard extends React.Component {
     }
     this.setState(this.initialState);
     this.props.editing(false);
-    setView('view-cards');
   }
 
   reset() {
@@ -58,51 +58,68 @@ class CreateCard extends React.Component {
   }
 
   render() {
-    const { isEditing, activeCard } = this.props;
+    const {
+      isEditing,
+      activeCard,
+      setView,
+      duplicatedQS,
+      duplicationModal,
+    } = this.props;
     return (
-      <div>
-        <h2 className="text-center mb-3">
-          {isEditing ? 'Update Card' : 'Create New Card'}
-        </h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="">Question:</label>
-            <textarea
-              className="form-control"
-              rows="3"
-              name="question"
-              value={this.state.question}
-              onChange={this.handleChange}
-              required
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="">Answer:</label>
-            <textarea
-              className="form-control"
-              rows="3"
-              name="answer"
-              value={this.state.answer}
-              onChange={this.handleChange}
-              required
-            ></textarea>
-          </div>
-          <div className="d-flex justify-content-end">
-            <button
-              className="btn btn-outline-danger mx-1"
-              type="submit"
-              onClick={() => {
-                this.reset();
-              }}
-            >
-              Cancel
-            </button>
-            <button className="btn btn-outline-primary mx-1" type="submit">
-              Save Card
-            </button>
-          </div>
-        </form>
-      </div>
+      <>
+        {duplicatedQS ? (
+          <DuplicationModal
+            duplicatedQS={duplicatedQS}
+            duplicationModal={duplicationModal}
+            setView={this.setView}
+          />
+        ) : (
+          ''
+        )}
+        <div>
+          <h2 className="text-center mb-3">
+            {isEditing ? 'Update Card' : 'Create New Card'}
+          </h2>
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="">Question:</label>
+              <textarea
+                className="form-control"
+                rows="3"
+                name="question"
+                value={this.state.question}
+                onChange={this.handleChange}
+                required
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <label htmlFor="">Answer:</label>
+              <textarea
+                className="form-control"
+                rows="3"
+                name="answer"
+                value={this.state.answer}
+                onChange={this.handleChange}
+                required
+              ></textarea>
+            </div>
+            <div className="d-flex justify-content-end">
+              <button
+                className="btn btn-outline-danger mx-1"
+                type="submit"
+                onClick={() => {
+                  this.reset();
+                }}
+              >
+                Cancel
+              </button>
+              <button className="btn btn-outline-primary mx-1" type="submit">
+                Save Card
+              </button>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }
