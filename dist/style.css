@@ -1,6 +1,9 @@
 .title {
   cursor: pointer; }
 
+.nav-link {
+  font-weight: 700; }
+
 .removeModal,
 .introModal,
 .duplicationModal {
