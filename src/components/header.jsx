@@ -8,7 +8,7 @@ const Header = (props) => {
       <div className="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between px-4">
         <div className="m-2">
           <h2
-            className="text-light m-0 title"
+            className="text-white m-0 title"
             onClick={() => {
               setView('view-cards');
             }}
@@ -16,7 +16,7 @@ const Header = (props) => {
             💡 Flash Card
           </h2>
         </div>
-        <div className="m-2">
+        <div className="my-2">
           <Nav
             editing={editing}
             isEditing={isEditing}

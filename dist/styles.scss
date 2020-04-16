@@ -1,5 +1,27 @@
+a {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
 .title {
   cursor: pointer;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.answer {
+  font-weight: 800;
+  font-size: 2rem;
 }
 
 .removeModal,

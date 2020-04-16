@@ -92,7 +92,7 @@ class ReviewCards extends React.Component {
                 <div className="review-card d-flex">
                   <div
                     className={`col-2 d-flex justify-content-center align-items-center ${
-                      this.state.front ? 'bg-dark' : 'bg-secondary'
+                      this.state.front ? 'bg-dark' : 'bg-warning'
                     }`}
                   >
                     <div
@@ -108,14 +108,18 @@ class ReviewCards extends React.Component {
                   </div>
                   <div
                     className={`review-card-body col-8 d-flex align-items-center justify-content-center title ${
-                      this.state.front ? 'bg-dark' : 'bg-secondary'
+                      this.state.front ? 'bg-dark' : 'bg-warning'
                     }`}
                     onClick={() => {
                       this.flipCard();
                     }}
                   >
                     <span>
-                      <h3 className="review-card-title text-white mb-0 text-center">
+                      <h3
+                        className={`review-card-title ${
+                          this.state.front ? 'text-white' : 'text-dark answer'
+                        } mb-0 text-center`}
+                      >
                         {activeCard
                           ? this.state.front
                             ? activeCard.question
@@ -126,7 +130,7 @@ class ReviewCards extends React.Component {
                   </div>
                   <div
                     className={`col-2 d-flex justify-content-center align-items-center ${
-                      this.state.front ? 'bg-dark' : 'bg-secondary'
+                      this.state.front ? 'bg-dark' : 'bg-warning'
                     }`}
                   >
                     <div
