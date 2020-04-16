@@ -16,7 +16,7 @@ const Header = (props) => {
             💡 Flash Card
           </h2>
         </div>
-        <div className="m-2">
+        <div className="my-2">
           <Nav
             editing={editing}
             isEditing={isEditing}

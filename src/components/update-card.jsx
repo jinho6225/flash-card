@@ -1,43 +1,41 @@
-import React from 'react'
+import React from 'react';
 
 class UpdateCard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.initialState = {
       question: '',
-      answer: ''
-    }
-    this.state = this.initialState
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.reset = this.reset.bind(this)
+      answer: '',
+    };
+    this.state = this.initialState;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleChange(e) {
     const { name, value } = e.target;
-    const { activeCard } = this.props
+    const { activeCard } = this.props;
     this.setState({
-      [name]: value
-    })
+      [name]: value,
+    });
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    const { addCard, setView } = this.props
-    addCard(this.state)
-    this.setState(this.initialState)
-    setView('view-cards')
+    e.preventDefault();
+    const { addCard, setView } = this.props;
+    addCard(this.state);
+    this.setState(this.initialState);
+    setView('view-cards');
   }
 
   reset() {
-    const { setView } = this.props
-    this.setState(this.initialState)
-    setView('view-cards')
+    const { setView } = this.props;
+    this.setState(this.initialState);
+    setView('view-cards');
   }
 
-
   render() {
-    console.log(this.props.activeCard)
     return (
       <div>
         <h1 className="text-center mb-3">Update Card</h1>
@@ -63,14 +61,22 @@ class UpdateCard extends React.Component {
             ></textarea>
           </div>
           <div className="d-flex justify-content-end">
-              <button className="btn btn-outline-danger mx-1" type="submit" onClick={() => {
-                this.reset()
-              }}>Cancel</button>
-              <button className="btn btn-outline-primary mx-1" type="submit">Save Card</button>
+            <button
+              className="btn btn-outline-danger mx-1"
+              type="submit"
+              onClick={() => {
+                this.reset();
+              }}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-outline-primary mx-1" type="submit">
+              Save Card
+            </button>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
