@@ -35,9 +35,10 @@ class CreateCard extends React.Component {
   }
 
   reset() {
-    const { setView } = this.props;
+    const { setView, setActiveCard, editing } = this.props;
     this.setState(this.initialState);
-    this.props.editing(false);
+    setActiveCard(null);
+    editing(false);
     setView('view-cards');
   }
 

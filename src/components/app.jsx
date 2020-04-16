@@ -1,7 +1,6 @@
 import React from 'react';
 import ViewCards from './view-cards.jsx';
 import CreateCard from './create-card.jsx';
-import UpdateCard from './update-card.jsx';
 import ReviewCards from './review-cards.jsx';
 import Header from './header.jsx';
 import Footer from './footer.jsx';

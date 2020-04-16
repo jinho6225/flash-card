@@ -15,6 +15,10 @@ a:hover {
   font-weight: 700;
   color: white; }
 
+.answer {
+  font-weight: 800;
+  font-size: 2rem; }
+
 .removeModal,
 .introModal,
 .duplicationModal {
