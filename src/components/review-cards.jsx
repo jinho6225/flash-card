@@ -85,7 +85,7 @@ class ReviewCards extends React.Component {
     } else {
       return (
         <>
-          <h2 className="text-center mb-4">Review (flip the card) </h2>
+          <h2 className="text-center m-4 p-2">Review (flip the card) </h2>
           <div className="row ">
             <div className="carousel-inner">
               <div className="carousel-item active">

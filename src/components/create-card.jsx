@@ -78,7 +78,7 @@ class CreateCard extends React.Component {
           ''
         )}
         <div>
-          <h2 className="text-center mb-3">
+          <h2 className="text-center m-4 p-2">
             {isEditing ? 'Update Card' : 'Create New Card'}
           </h2>
           <form onSubmit={this.handleSubmit}>

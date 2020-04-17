@@ -56,7 +56,7 @@ class ViewCards extends React.Component {
     if (cards.length === 0) {
       return (
         <div>
-          <h1 className="text-center mb-3">My Cards</h1>
+          <h1 className="text-center m-4 p-2">My Cards</h1>
           <h4 className="text-center">Card deck is empty...</h4>
           <h4 className="text-center">
             <span
@@ -73,7 +73,7 @@ class ViewCards extends React.Component {
     } else {
       return (
         <div>
-          <h2 className="text-center mb-4">My Cards</h2>
+          <h2 className="text-center m-4 p-2">My Cards</h2>
           <div className="row row-cols-1 row-cols-md-3">
             {cards.map((card, i) => {
               return (
