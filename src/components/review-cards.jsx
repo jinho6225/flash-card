@@ -61,6 +61,9 @@ class ReviewCards extends React.Component {
   componentDidMount() {
     this.props.setActiveCard(this.state.initial);
   }
+  componentWillUnmount() {
+    this.props.setActiveCard(null);
+  }
 
   render() {
     const { activeCard, cards, setView } = this.props;
