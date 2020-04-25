@@ -118,10 +118,25 @@ class ReviewCards extends React.Component {
                     }}
                   >
                     <span>
+                      <h6
+                        className={`review-card-title ${
+                          this.state.front ? 'text-white' : 'text-dark'
+                        } mb-0 text-left`}
+                      >
+                        {activeCard ? (
+                          this.state.front ? (
+                            <span>Question: &#160;</span>
+                          ) : (
+                            <span>Answer: &#160;</span>
+                          )
+                        ) : (
+                          '???'
+                        )}
+                      </h6>
                       <h3
                         className={`review-card-title ${
-                          this.state.front ? 'text-white' : 'text-dark answer'
-                        } mb-0 text-center`}
+                          this.state.front ? 'text-white' : 'text-dark'
+                        } mb-0 text-left`}
                       >
                         {activeCard
                           ? this.state.front

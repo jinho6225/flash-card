@@ -9,9 +9,24 @@ class ViewCards extends React.Component {
         show: false,
         displayNone: true,
       },
+      answer: null,
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.showAnswer = this.showAnswer.bind(this);
     this.timeId = null;
+    this.timeAnswerId = null;
+  }
+
+  showAnswer(id) {
+    const { answer } = this.state;
+    this.setState({
+      answer: id,
+    });
+    this.timeAnswerId = setTimeout(() => {
+      this.setState({
+        answer: null,
+      });
+    }, 1500);
   }
 
   toggleModal() {
@@ -84,8 +99,18 @@ class ViewCards extends React.Component {
                       <p className="card-text text-white">{card.question}</p>
                     </div>
                     <div className="card-body bg-secondary">
-                      <h6 className="card-title text-dark">Answer</h6>
-                      <p className="card-text text-white">{card.answer}</p>
+                      <h6
+                        className="icon"
+                        id={i}
+                        onClick={(e) => {
+                          this.showAnswer(e.target.id);
+                        }}
+                      >
+                        Check the answer
+                      </h6>
+                      <p className="card-text text-white">
+                        {this.state.answer === i.toString() ? card.answer : ''}
+                      </p>
                       <div className="bg-secondary d-flex justify-content-center">
                         <i
                           className="far fa-edit icon"
