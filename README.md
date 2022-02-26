@@ -4,7 +4,7 @@
 A Dynamic Flash Card, responsive web App built with React.js
 
 ## Live Demo
-Try the application live at [https://flash-card.jinho6225.com/](https://flash-card.jinho6225.com/)
+Try the application live at [https://flash-card.jinho6225.com/](https://jinho6225.github.io/flashflash-card/)
 
 ## Technologies Used
 - React.js
